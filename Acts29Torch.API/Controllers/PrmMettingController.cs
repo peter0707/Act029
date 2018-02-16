@@ -38,6 +38,7 @@ namespace Acts29Torch.API.Controllers
             }
             catch (CommonException e)
             {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
                 _rc = ReturnCode.CreateFail;
             }
             return Json(_resultInfo.NonResult(_rc));
@@ -59,6 +60,7 @@ namespace Acts29Torch.API.Controllers
             }
             catch (CommonException e)
             {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
                 if (e.ReturnCode == ReturnCode.NoFoundTargetData ||
                     e.ReturnCode == ReturnCode.NoTargetId)
                     _rc = e.ReturnCode;
@@ -84,6 +86,7 @@ namespace Acts29Torch.API.Controllers
             }
             catch (CommonException e)
             {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
                 _rc = ReturnCode.DeleteFail;
             }
             return Json(_resultInfo.NonResult(_rc));
@@ -105,10 +108,10 @@ namespace Acts29Torch.API.Controllers
                     return Json(_resultInfo.DataNotFound());
                 else
                     return Json(_resultInfo.GetPageList(ReturnCode.GetDataSuccess, data));
-
             }
             catch (CommonException e)
             {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
                 return Json(_resultInfo.NonResult(ReturnCode.GetDataFail));
             }
         }
@@ -132,6 +135,7 @@ namespace Acts29Torch.API.Controllers
             }
             catch (CommonException e)
             {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
                 return Json(_resultInfo.NonResult(ReturnCode.GetDataFail));
             }
         }

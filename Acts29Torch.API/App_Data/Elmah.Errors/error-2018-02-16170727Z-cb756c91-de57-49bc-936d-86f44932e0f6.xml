@@ -1,0 +1,166 @@
+﻿<error errorId="cb756c91-de57-49bc-936d-86f44932e0f6" application="/LM/W3SVC/3/ROOT" host="DESKTOP-G49KNVR" type="Acts29Torch.TOOLS.CommonException" message="已發生類型 'Acts29Torch.TOOLS.CommonException' 的例外狀況。" source="Acts29Torch.DAL" detail="Acts29Torch.TOOLS.CommonException: 已發生類型 'Acts29Torch.TOOLS.CommonException' 的例外狀況。&#xD;&#xA;   於 Acts29Torch.DAL.PrmReportDAL.PrmMettingDAL.Create(CreatePrmReportIn Para, Int32 MemId) 於 D:\教會\Acts29Torch\Acts29Torch.DAL\PrmMeetingDAL\PrmMettingDAL.cs: 行 62&#xD;&#xA;   於 Acts29Torch.BLL.PrmMeetingBLL.PrmMeetingBLL.Create(CreatePrmReportIn Para, Int32 MemId) 於 D:\教會\Acts29Torch\Acts29Torch.BLL\PrmMeetingBLL\PrmMeetingBLL.cs: 行 31&#xD;&#xA;   於 Acts29Torch.API.Controllers.PrmMettingController.Create(SendInfo`1 Para) 於 D:\教會\Acts29Torch\Acts29Torch.API\Controllers\PrmMettingController.cs: 行 37" time="2018-02-16T17:07:27.0858346Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CACHE_CONTROL:no-cache&#xD;&#xA;HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_CONTENT_LENGTH:438&#xD;&#xA;HTTP_CONTENT_TYPE:application/json&#xD;&#xA;HTTP_ACCEPT:*/*&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate, br&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6,ja;q=0.5&#xD;&#xA;HTTP_HOST:localhost:54107&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.167 Safari/537.36&#xD;&#xA;HTTP_ORIGIN:chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop&#xD;&#xA;HTTP_POSTMAN_TOKEN:59414951-3b3c-ac42-8f83-bd5f4b83b485&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Cache-Control: no-cache&#xD;&#xA;Connection: keep-alive&#xD;&#xA;Content-Length: 438&#xD;&#xA;Content-Type: application/json&#xD;&#xA;Accept: */*&#xD;&#xA;Accept-Encoding: gzip, deflate, br&#xD;&#xA;Accept-Language: zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6,ja;q=0.5&#xD;&#xA;Host: localhost:54107&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.167 Safari/537.36&#xD;&#xA;Origin: chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop&#xD;&#xA;Postman-Token: 59414951-3b3c-ac42-8f83-bd5f4b83b485&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/3/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="D:\教會\Acts29Torch\Acts29Torch.API\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="*****" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="438" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="application/json" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="3" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/3" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/Api/PrmMetting/Create" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="D:\教會\Acts29Torch\Acts29Torch.API\Api\PrmMetting\Create" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="51861" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="POST" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/Api/PrmMetting/Create" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="54107" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/10.0" />
+    </item>
+    <item name="URL">
+      <value string="/Api/PrmMetting/Create" />
+    </item>
+    <item name="HTTP_CACHE_CONTROL">
+      <value string="no-cache" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_CONTENT_LENGTH">
+      <value string="438" />
+    </item>
+    <item name="HTTP_CONTENT_TYPE">
+      <value string="application/json" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="*/*" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate, br" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-CN;q=0.6,ja;q=0.5" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:54107" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.167 Safari/537.36" />
+    </item>
+    <item name="HTTP_ORIGIN">
+      <value string="chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop" />
+    </item>
+    <item name="HTTP_POSTMAN_TOKEN">
+      <value string="59414951-3b3c-ac42-8f83-bd5f4b83b485" />
+    </item>
+  </serverVariables>
+</error>
