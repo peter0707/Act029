@@ -1,0 +1,133 @@
+﻿using Acts29Torch.BLL.PrmMeetingBLL;
+using Acts29Torch.MODEL;
+using Acts29Torch.MODEL.Common;
+using Acts29Torch.MODEL.Enum;
+using Acts29Torch.MODEL.PrmReport;
+using Acts29Torch.TOOLS;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
+
+namespace Acts29Torch.API.Controllers
+{
+    public class PrmMettingController : BaseController
+    {
+        private readonly PrmMeetingBLL _prmmeetingBll;
+        public PrmMettingController()
+        {
+            _prmmeetingBll = new PrmMeetingBLL();
+        }
+        /// <summary>
+        /// 新增一筆面談資料
+        /// </summary>
+        /// <param name="Para"></param>
+        /// <returns></returns>
+        [ApiExplorerSettings(IgnoreApi = false)]
+        [HttpPost]
+        public IHttpActionResult Create(SendInfo<CreatePrmReportIn> Para)
+        {
+            var result = ReturnCode.CreateSuccess;
+            try
+            {
+                _prmmeetingBll.Create(Para.Data, Para.MemId);
+            }
+            catch (CommonException e)
+            {
+                result = ReturnCode.CreateFail;
+            }
+            return Json(_resultInfo.NonResult(result));
+        }
+        /// <summary>
+        /// 修改一筆面談資料
+        /// </summary>
+        /// <param name="Para"></param>
+        /// <returns></returns>
+        [ApiExplorerSettings(IgnoreApi = false)]
+        [HttpPost]
+        public IHttpActionResult Edit(SendInfo<EditPrmReportIn> Para)
+        {
+            var result = ReturnCode.EditSuccess;
+            try
+            {
+                _prmmeetingBll.Edit(Para.Data, Para.MemId);
+            }
+            catch (CommonException e)
+            {
+                if (e.ReturnCode == ReturnCode.NoFoundTargetData ||
+                    e.ReturnCode == ReturnCode.NoTargetId)
+                    result = e.ReturnCode;
+                else
+                    result = ReturnCode.EditFail;
+            }
+            return Json(_resultInfo.NonResult(result));
+        }
+        /// <summary>
+        /// 刪除一筆面談資料
+        /// </summary>
+        /// <param name="Para"></param>
+        /// <returns></returns>
+        [ApiExplorerSettings(IgnoreApi = false)]
+        [HttpPost]
+        public IHttpActionResult Delete(SendInfo<DeletePrmReportIn> Para)
+        {
+            var result = ReturnCode.CreateSuccess;
+            try
+            {
+                _prmmeetingBll.Delete(Para.Data, Para.MemId);
+            }
+            catch (CommonException e)
+            {
+                result = ReturnCode.CreateFail;
+            }
+            return Json(_resultInfo.NonResult(result));
+        }
+        /// <summary>
+        /// 取得所有面談資料
+        /// </summary>
+        /// <param name="Para"></param>
+        /// <returns></returns>
+        [ApiExplorerSettings(IgnoreApi = false)]
+        [HttpPost]
+        public IHttpActionResult GetList(SendInfo<QueryPrmMettingIn> Para)
+        {
+            try
+            {
+                var data = _prmmeetingBll.GetList(Para.Data, Para.Page, Para.PageCount);
+                if (data == null)
+                    return Json(_resultInfo.DataNotFound());
+                else
+                    return Json(_resultInfo.GetPageList(ReturnCode.GetDataSuccess, data));
+
+            }
+            catch (CommonException e)
+            {
+                return Json(_resultInfo.NonResult(ReturnCode.GetDataFail));
+            }
+        }
+        ///// <summary>
+        ///// 取得一筆面談資料
+        ///// </summary>
+        ///// <param name="Para"></param>
+        ///// <returns></returns>
+        //[ApiExplorerSettings(IgnoreApi = false)]
+        //[HttpPost]
+        //public ResultInfo GetSingle(SendInfo<QueryPrmMettingDetailIn> Para)
+        //{
+        //    var result = ReturnCode.CreateSuccess;
+        //    try
+        //    {
+        //        _prmmeetingBll.GetSingle(Para.Data, Para.MemId);
+        //    }
+        //    catch (CommonExceprion e)
+        //    {
+        //        result = ReturnCode.CreateFail;
+        //    }
+        //    return _resultInfo.NonResult(result);
+        //}
+
+    }
+}

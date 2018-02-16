@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E81489E3-429E-4C6B-84C9-F1C8EDE3C20A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Acts29Torch.EF</RootNamespace>
+    <AssemblyName>Acts29Torch.EF</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="account.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="account_line_apply_change_info.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="account_line_group_privilege.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="account_line_prm_roles.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="account_session_security.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Acts29Torch.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Acts29Torch.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Acts29Torch.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Acts29Torch.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Acts29Torch.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="acts29_church.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acts29_church_line_donation_account_info.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acts29_church_line_page_website_group.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="acts29_church_line_servicetime.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="act_apply_info.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="act_apply_line_answer.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="act_apply_line_ticket.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="act_event_form.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="act_event_info.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="act_event_info_line_client_id.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="act_event_info_line_images.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="act_event_line_ticket.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="act_event_question.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="act_event_q_option.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="act_staff_info.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cos_course_info_line_elect_requirement_tu.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cos_course_info_tu.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cos_course_offered_line_progress_tu.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cos_course_offered_semester_tu.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cos_faculty_info_tu.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cos_home_images_tu.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cos_lesson_info.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cos_lesson_line_progress.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cos_semester_info_tu.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cos_staff_info.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="css_style.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="d_option.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="d_select.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="group_privilege.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="group_privilege_line.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="location_info.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="location_line_booking.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="location_line_booking_datetime.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="location_line_organization_booking.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="location_line_servicetime.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="log_action.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="log_error.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="member.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="member_acts29_church.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="member_end_user_tu.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="member_line_cos_elect.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="member_line_cos_lesson_info.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="member_line_images.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="member_line_notification_tu.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="member_line_prm_info.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="member_line_prm_new_friend_info.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="member_line_prm_organiztion_audit.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="member_line_refund_info_tu.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="member_type.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="news.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="news_line_reference.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="notification.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="page.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="page_website_group.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="page_website_group_end_user.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prm_meeting_report.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prm_meeting_report_line_reply.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prm_meeting_report_line_require.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prm_organization_privilege.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="prm_temp_recursive_privlilege.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="schedule_recurrence.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="temp_member_line_prm_info.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tra_cashflow_atm.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tra_cashflow_atm_line_act_apply_info.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tra_cashflow_atm_line_refund_info.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tra_cashflow_atm_tu.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tra_cashflow_atm_tu_line_member_cos_info.cs">
+      <DependentUpon>Acts29Torch.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Acts29Torch.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Acts29Torch.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Acts29Torch.edmx.diagram">
+      <DependentUpon>Acts29Torch.edmx</DependentUpon>
+    </None>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Acts29Torch.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Acts29Torch.Context.cs</LastGenOutput>
+      <DependentUpon>Acts29Torch.edmx</DependentUpon>
+    </Content>
+    <Content Include="Acts29Torch.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Acts29Torch.edmx</DependentUpon>
+      <LastGenOutput>Acts29Torch.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
