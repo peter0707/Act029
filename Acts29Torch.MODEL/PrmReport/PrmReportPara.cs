@@ -20,8 +20,6 @@ namespace Acts29Torch.MODEL.PrmReport
         public string MeetingDesc { get; set; }
         public string MeetingMembers { get; set; }
         public Nullable<long> Acts29ChurchAid { get; set; }
-        public Nullable<byte> Disable { get; set; }
-        public string BuildDatetime { get; set; }
     }
 
     public class CreatePrmReportIn : PrmReportPara

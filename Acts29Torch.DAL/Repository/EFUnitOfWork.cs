@@ -1,7 +1,9 @@
 ﻿using Acts29Torch.EF;
+using Acts29Torch.TOOLS;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,7 +46,14 @@ namespace Acts29Torch.DAL.Repository
         /// </summary>
         public void Save()
         {
-            Context.SaveChangesAsync();
+            try
+            {
+                Context.SaveChangesAsync();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                throw new CommonException();
+            }
         }
     }
 }

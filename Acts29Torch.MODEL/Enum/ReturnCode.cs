@@ -12,6 +12,8 @@ namespace Acts29Torch.MODEL.Enum
         CreateFail = 102,
         EditSuccess = 201,
         EditFail = 202,
+        DeleteSuccess = 301,
+        DeleteFail = 302,
         NoTargetId = 901,
         NoFoundTargetData = 902,
         GetDataSuccess = 1001,

@@ -26,31 +26,33 @@ namespace Acts29Torch.API.Controllers
         /// </summary>
         /// <param name="Para"></param>
         /// <returns></returns>
+        [ResponseType(typeof(ResultInfo))]
         [ApiExplorerSettings(IgnoreApi = false)]
         [HttpPost]
         public IHttpActionResult Create(SendInfo<CreatePrmReportIn> Para)
         {
-            var result = ReturnCode.CreateSuccess;
+            var _rc = ReturnCode.CreateSuccess;
             try
             {
                 _prmmeetingBll.Create(Para.Data, Para.MemId);
             }
             catch (CommonException e)
             {
-                result = ReturnCode.CreateFail;
+                _rc = ReturnCode.CreateFail;
             }
-            return Json(_resultInfo.NonResult(result));
+            return Json(_resultInfo.NonResult(_rc));
         }
         /// <summary>
         /// 修改一筆面談資料
         /// </summary>
         /// <param name="Para"></param>
         /// <returns></returns>
+        [ResponseType(typeof(ResultInfo))]
         [ApiExplorerSettings(IgnoreApi = false)]
         [HttpPost]
         public IHttpActionResult Edit(SendInfo<EditPrmReportIn> Para)
         {
-            var result = ReturnCode.EditSuccess;
+            var _rc = ReturnCode.EditSuccess;
             try
             {
                 _prmmeetingBll.Edit(Para.Data, Para.MemId);
@@ -59,37 +61,39 @@ namespace Acts29Torch.API.Controllers
             {
                 if (e.ReturnCode == ReturnCode.NoFoundTargetData ||
                     e.ReturnCode == ReturnCode.NoTargetId)
-                    result = e.ReturnCode;
+                    _rc = e.ReturnCode;
                 else
-                    result = ReturnCode.EditFail;
+                    _rc = ReturnCode.EditFail;
             }
-            return Json(_resultInfo.NonResult(result));
+            return Json(_resultInfo.NonResult(_rc));
         }
         /// <summary>
         /// 刪除一筆面談資料
         /// </summary>
         /// <param name="Para"></param>
         /// <returns></returns>
+        [ResponseType(typeof(ResultInfo))]
         [ApiExplorerSettings(IgnoreApi = false)]
         [HttpPost]
         public IHttpActionResult Delete(SendInfo<DeletePrmReportIn> Para)
         {
-            var result = ReturnCode.CreateSuccess;
+            var _rc = ReturnCode.DeleteSuccess;
             try
             {
                 _prmmeetingBll.Delete(Para.Data, Para.MemId);
             }
             catch (CommonException e)
             {
-                result = ReturnCode.CreateFail;
+                _rc = ReturnCode.DeleteFail;
             }
-            return Json(_resultInfo.NonResult(result));
+            return Json(_resultInfo.NonResult(_rc));
         }
         /// <summary>
         /// 取得所有面談資料
         /// </summary>
         /// <param name="Para"></param>
         /// <returns></returns>
+        [ResponseType(typeof(ResultInfo))]
         [ApiExplorerSettings(IgnoreApi = false)]
         [HttpPost]
         public IHttpActionResult GetList(SendInfo<QueryPrmMettingIn> Para)
@@ -108,26 +112,28 @@ namespace Acts29Torch.API.Controllers
                 return Json(_resultInfo.NonResult(ReturnCode.GetDataFail));
             }
         }
-        ///// <summary>
-        ///// 取得一筆面談資料
-        ///// </summary>
-        ///// <param name="Para"></param>
-        ///// <returns></returns>
-        //[ApiExplorerSettings(IgnoreApi = false)]
-        //[HttpPost]
-        //public ResultInfo GetSingle(SendInfo<QueryPrmMettingDetailIn> Para)
-        //{
-        //    var result = ReturnCode.CreateSuccess;
-        //    try
-        //    {
-        //        _prmmeetingBll.GetSingle(Para.Data, Para.MemId);
-        //    }
-        //    catch (CommonExceprion e)
-        //    {
-        //        result = ReturnCode.CreateFail;
-        //    }
-        //    return _resultInfo.NonResult(result);
-        //}
+        /// <summary>
+        /// 取得一筆面談資料
+        /// </summary>
+        /// <param name="Para"></param>
+        /// <returns></returns>
+        [ApiExplorerSettings(IgnoreApi = false)]
+        [HttpPost]
+        public IHttpActionResult GetSingle(SendInfo<QueryPrmMettingDetailIn> Para)
+        {
+            try
+            {
+                var data = _prmmeetingBll.GetSingle(Para.Data);
+                if (data == null)
+                    return Json(_resultInfo.DataNotFound());
+                else
+                    return Json(_resultInfo.GetResult(ReturnCode.GetDataSuccess, data));
 
+            }
+            catch (CommonException e)
+            {
+                return Json(_resultInfo.NonResult(ReturnCode.GetDataFail));
+            }
+        }
     }
 }

@@ -38,13 +38,18 @@ namespace Acts29Torch.MODEL.Common
         {
             return new ResultInfo((int)_RC, _RC.ToString());
         }
+        public ResultInfo<T> GetResult<T>(ReturnCode _RC, T _Result)
+        {
+            if (_Result == null)
+                return new ResultInfo<T>((int)ReturnCode.DataNotFound, ReturnCode.DataNotFound.ToString());
+            return new ResultInfo<T>((int)_RC, _RC.ToString(), _Result);
+        }
         public ResultInfo<T> GetResult<T>(ReturnCode _RC, string _RM, T _Result)
         {
             if (_Result == null)
                 return new ResultInfo<T>((int)ReturnCode.DataNotFound, ReturnCode.DataNotFound.ToString());
-            return new ResultInfo<T>((int)_RC, _RM, _Result);
+            return new ResultInfo<T>((int)_RC, _RM.ToString(), _Result);
         }
-
         public ResultInfo<List<T>> GetList<T>(ReturnCode _RC, string _RM, List<T> _Result)
         {
             if (_Result == null || _Result.Count() == 0)
