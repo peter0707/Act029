@@ -31,8 +31,6 @@ namespace Acts29Torch.DAL.PrmReportDAL
         /// <param name="MemId"></param>
         public void Create(CreatePrmReportIn Para, int MemId)
         {
-            try
-            {
                 var CreateInfo = _prmmeetingrep.GetAll().OrderByDescending(d => d.aid).Take(1).FirstOrDefault();
                 var data = new prm_meeting_report()
                 {
@@ -56,12 +54,6 @@ namespace Acts29Torch.DAL.PrmReportDAL
                 };
                 _prmmeetingrep.Create(data);
                 _prmmeetingrep.Save();
-            }
-            catch (CommonException e)
-            {
-                throw new CommonException(ReturnCode.CreateFail, e.Message);
-            }
-
         }
         /// <summary>
         /// 修改一筆面談紀錄
@@ -70,8 +62,6 @@ namespace Acts29Torch.DAL.PrmReportDAL
         /// <param name="MemId"></param>
         public void Edit(EditPrmReportIn Para, int MemId)
         {
-            try
-            {
                 var EditInfo = _prmmeetingrep.Query(d => d.aid == Para.Aid).FirstOrDefault();
                 if (EditInfo == null)
                     throw new CommonException(ReturnCode.NoFoundTargetData);
@@ -91,14 +81,6 @@ namespace Acts29Torch.DAL.PrmReportDAL
                 EditInfo.last_mod_time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 EditInfo.last_mod_user_aid = MemId;
                 _prmmeetingrep.Save();
-            }
-            catch (CommonException e)
-            {
-                if (e.ReturnCode == ReturnCode.NoFoundTargetData)
-                    throw new CommonException(ReturnCode.NoFoundTargetData);
-                else
-                    throw new CommonException(ReturnCode.EditFail, e.Message);
-            }
         }
         /// <summary>
         /// 刪除一筆面談紀錄
@@ -107,8 +89,6 @@ namespace Acts29Torch.DAL.PrmReportDAL
         /// <param name="MemId"></param>
         public void Delete(DeletePrmReportIn Para, int MemId)
         {
-            try
-            {
                 var DelInfo = _prmmeetingrep.Query(d => d.aid == Para.Aid).FirstOrDefault();
                 if (DelInfo == null)
                     throw new CommonException(ReturnCode.NoFoundTargetData);
@@ -116,16 +96,9 @@ namespace Acts29Torch.DAL.PrmReportDAL
                 DelInfo.last_mod_time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 DelInfo.last_mod_user_aid = MemId;
                 _prmmeetingrep.Save();
-            }
-            catch (CommonException e)
-            {
-                throw new CommonException(ReturnCode.DeleteFail, e.Message);
-            }
         }
         public List<PrmMeetingSimpleOut> GetList(QueryPrmMettingIn Para)
         {
-            try
-            {
                 using (var db = new Acts29TorchEntities())
                 {
                     var data = (from t1 in db.prm_meeting_report
@@ -146,13 +119,7 @@ namespace Acts29Torch.DAL.PrmReportDAL
                                    OrganizationName = d.Key.organization_name
                                }).ToList();
                     return data;
-                }
-            }
-            catch (CommonException e)
-            {
-                throw new CommonException(ReturnCode.GetDataFail, e.Message);
-            }
-
+                }           
         }
         private class MulitTable
         {

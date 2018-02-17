@@ -52,7 +52,15 @@ namespace Acts29Torch.DAL.Repository
             }
             catch (DbEntityValidationException ex)
             {
-                throw new CommonException();
+                var errors = new List<string>();
+                foreach (var e in ex.EntityValidationErrors)
+                {
+                    errors.AddRange(e.ValidationErrors.Select(e2 => string.Join("Validation Error :: ", e2.PropertyName, " : ", e2.ErrorMessage)));
+                }
+                var error = string.Join("\r\n", errors);
+                var betterException = new Exception(error, ex);
+
+                throw betterException;
             }
         }
     }

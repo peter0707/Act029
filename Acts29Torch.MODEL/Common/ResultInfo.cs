@@ -59,7 +59,7 @@ namespace Acts29Torch.MODEL.Common
 
         public ResultInfo<PageListInfo<T>> GetPageList<T>(ReturnCode _RC, PageListInfo<T> _Result)
         {
-            if (_Result == null || _Result.Data.Count == 0)
+            if (_Result == null || _Result.Data == null || _Result.Data.Count == 0)
                 return new ResultInfo<PageListInfo<T>>((int)ReturnCode.DataNotFound, ReturnCode.DataNotFound.ToString());
             return new ResultInfo<PageListInfo<T>>((int)_RC, _RC.ToString(), _Result);
         }

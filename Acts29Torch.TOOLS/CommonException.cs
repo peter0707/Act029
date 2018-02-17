@@ -12,7 +12,7 @@ namespace Acts29Torch.TOOLS
         public ReturnCode ReturnCode { get; set; }
         public CommonException()
         { }
-        public CommonException(ReturnCode _code)
+        public CommonException(ReturnCode _code) : base(_code.ToString())
         {
             ReturnCode = _code;
         }

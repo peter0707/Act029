@@ -87,7 +87,11 @@ namespace Acts29Torch.API.Controllers
             catch (CommonException e)
             {
                 Elmah.ErrorSignal.FromCurrentContext().Raise(e);
-                _rc = ReturnCode.DeleteFail;
+                if (e.ReturnCode == ReturnCode.NoFoundTargetData ||
+                    e.ReturnCode == ReturnCode.NoTargetId)
+                    _rc = e.ReturnCode;
+                else
+                    _rc = ReturnCode.DeleteFail;
             }
             return Json(_resultInfo.NonResult(_rc));
         }
