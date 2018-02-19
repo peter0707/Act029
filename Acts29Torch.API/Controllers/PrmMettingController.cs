@@ -1,9 +1,7 @@
 ﻿using Acts29Torch.BLL.PrmMeetingBLL;
-using Acts29Torch.MODEL;
 using Acts29Torch.MODEL.Common;
 using Acts29Torch.MODEL.Enum;
 using Acts29Torch.MODEL.PrmReport;
-using Acts29Torch.TOOLS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,48 +98,52 @@ namespace Acts29Torch.API.Controllers
         /// </summary>
         /// <param name="Para"></param>
         /// <returns></returns>
-        [ResponseType(typeof(ResultInfo))]
+        [ResponseType(typeof(ResultInfo<PageListInfo<PrmMeetingSimpleOut>>))]
         [ApiExplorerSettings(IgnoreApi = false)]
         [HttpPost]
         public IHttpActionResult GetList(SendInfo<QueryPrmMettingIn> Para)
         {
+            var result = new PageListInfo<PrmMeetingSimpleOut>();
+            var _rc = ReturnCode.GetDataSuccess;
             try
             {
-                var data = _prmmeetingBll.GetList(Para.Data, Para.Page, Para.PageCount);
-                if (data == null)
-                    return Json(_resultInfo.DataNotFound());
-                else
-                    return Json(_resultInfo.GetPageList(ReturnCode.GetDataSuccess, data));
+                result = _prmmeetingBll.GetList(Para.Data, Para.Page, Para.PageCount);
+                if (result == null || result.Data == null || result.Data.Count() == 0)
+                    _rc = ReturnCode.DataNotFound;
             }
             catch (CommonException e)
             {
                 Elmah.ErrorSignal.FromCurrentContext().Raise(e);
-                return Json(_resultInfo.NonResult(ReturnCode.GetDataFail));
+                _rc = ReturnCode.GetDataFail;
+                result = null;
             }
+            return Json(_resultInfo.GetResult(_rc, result));
         }
         /// <summary>
         /// 取得一筆面談資料
         /// </summary>
         /// <param name="Para"></param>
         /// <returns></returns>
+        [ResponseType(typeof(ResultInfo<QueryPrmReportOut>))]
         [ApiExplorerSettings(IgnoreApi = false)]
         [HttpPost]
         public IHttpActionResult GetSingle(SendInfo<QueryPrmMettingDetailIn> Para)
         {
+            var _rc = ReturnCode.GetDataSuccess;
+            var data = new QueryPrmReportOut();
             try
             {
-                var data = _prmmeetingBll.GetSingle(Para.Data);
-                if (data == null)
-                    return Json(_resultInfo.DataNotFound());
-                else
-                    return Json(_resultInfo.GetResult(ReturnCode.GetDataSuccess, data));
-
+                data = _prmmeetingBll.GetSingle(Para.Data);
+                if(data == null)
+                    _rc = ReturnCode.DataNotFound;
             }
             catch (CommonException e)
             {
                 Elmah.ErrorSignal.FromCurrentContext().Raise(e);
-                return Json(_resultInfo.NonResult(ReturnCode.GetDataFail));
+                _rc = ReturnCode.GetDataFail;
+                data = null;
             }
+            return Json(_resultInfo.GetResult(_rc, data));
         }
     }
 }

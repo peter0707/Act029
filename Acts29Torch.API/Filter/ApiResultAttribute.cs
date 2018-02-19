@@ -10,7 +10,7 @@ namespace Acts29Torch.API.Filter
     {
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
-            //log 記錄地方
+            //log 記錄地方 Log4Net Nlog SQL 
             base.OnActionExecuted(actionExecutedContext);
         }
     }

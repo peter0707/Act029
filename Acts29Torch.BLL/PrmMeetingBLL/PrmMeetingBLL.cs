@@ -1,10 +1,8 @@
 ﻿using Acts29Torch.DAL.PrmReportDAL;
 using Acts29Torch.DAL.Repository;
-using Acts29Torch.MODEL;
 using Acts29Torch.MODEL.Common;
 using Acts29Torch.MODEL.Enum;
 using Acts29Torch.MODEL.PrmReport;
-using Acts29Torch.TOOLS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,13 +57,7 @@ namespace Acts29Torch.BLL.PrmMeetingBLL
         /// <param name="MemId"></param>
         public PageListInfo<PrmMeetingSimpleOut> GetList(QueryPrmMettingIn Para, int Page, int PageCount)
         {
-            var data = _prmmettingDAL.GetList(Para);
-            var result = new PageListInfo<PrmMeetingSimpleOut>()
-            {
-                Data = data.Skip(PageCount * (Page - 1)).Take(PageCount).ToList(),
-                Count = data.Count()
-            };
-            return result;
+            return _prmmettingDAL.GetList(Para, Page, PageCount);
         }
         /// <summary>
         /// 取得單筆面談紀錄

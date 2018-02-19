@@ -66,14 +66,11 @@
       <Project>{bfe326cb-efd0-4152-bc28-962c7375e5bc}</Project>
       <Name>Acts29Torch.MODEL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Acts29Torch.TOOLS\Acts29Torch.TOOLS.csproj">
-      <Project>{05ECE7F8-2B7F-4F6A-8C5A-88EB2F92BDBE}</Project>
-      <Name>Acts29Torch.TOOLS</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

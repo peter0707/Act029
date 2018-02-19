@@ -93,5 +93,14 @@ namespace Acts29Torch.DAL.Repository
         {
             UnitOfWork.Save();
         }
+        /// <summary>
+        /// 判斷是否有相關資料
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public bool Any(Expression<Func<T, bool>> filter)
+        {
+            return Dbset.Any(filter);
+        }
     }
 }

@@ -1,10 +1,8 @@
 ﻿using Acts29Torch.DAL.Repository;
 using Acts29Torch.EF;
-using Acts29Torch.MODEL;
 using Acts29Torch.MODEL.Common;
 using Acts29Torch.MODEL.Enum;
 using Acts29Torch.MODEL.PrmReport;
-using Acts29Torch.TOOLS;
 using LinqKit;
 using System;
 using System.Collections.Generic;
@@ -31,29 +29,29 @@ namespace Acts29Torch.DAL.PrmReportDAL
         /// <param name="MemId"></param>
         public void Create(CreatePrmReportIn Para, int MemId)
         {
-                var CreateInfo = _prmmeetingrep.GetAll().OrderByDescending(d => d.aid).Take(1).FirstOrDefault();
-                var data = new prm_meeting_report()
-                {
-                    aid = CreateInfo == null ? 1 : CreateInfo.aid + 1,
-                    meeting_type = Para.MeetingType,
-                    if_held = Para.IfHeld,
-                    prm_organization_privilege_aid = Para.PrmOrganizationPrivilegeAid,
-                    meeting_location = Para.MeetingLocation,
-                    account_aid = Para.AccountAid,
-                    meeting_start_date = Para.MeetingStartDate,
-                    meeting_start_date_time = Para.MeetingStartDateTime,
-                    meeting_end_date = Para.MeetingEndDate,
-                    meeting_end_date_time = Para.MeetingEndDateTime,
-                    meeting_desc = Para.MeetingDesc,
-                    meeting_members = Para.MeetingMembers,
-                    acts29_church_aid = Para.Acts29ChurchAid,
-                    disable = 0,
-                    build_datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                    last_mod_time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                    last_mod_user_aid = MemId
-                };
-                _prmmeetingrep.Create(data);
-                _prmmeetingrep.Save();
+            var CreateInfo = _prmmeetingrep.GetAll().OrderByDescending(d => d.aid).Take(1).FirstOrDefault();
+            var data = new prm_meeting_report()
+            {
+                aid = CreateInfo == null ? 1 : CreateInfo.aid + 1,
+                meeting_type = Para.MeetingType,
+                if_held = Para.IfHeld,
+                prm_organization_privilege_aid = Para.PrmOrganizationPrivilegeAid,
+                meeting_location = Para.MeetingLocation,
+                account_aid = Para.AccountAid,
+                meeting_start_date = Para.MeetingStartDate,
+                meeting_start_date_time = Para.MeetingStartDateTime,
+                meeting_end_date = Para.MeetingEndDate,
+                meeting_end_date_time = Para.MeetingEndDateTime,
+                meeting_desc = Para.MeetingDesc,
+                meeting_members = Para.MeetingMembers,
+                acts29_church_aid = Para.Acts29ChurchAid,
+                disable = 0,
+                build_datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                last_mod_time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                last_mod_user_aid = MemId
+            };
+            _prmmeetingrep.Create(data);
+            _prmmeetingrep.Save();
         }
         /// <summary>
         /// 修改一筆面談紀錄
@@ -62,25 +60,25 @@ namespace Acts29Torch.DAL.PrmReportDAL
         /// <param name="MemId"></param>
         public void Edit(EditPrmReportIn Para, int MemId)
         {
-                var EditInfo = _prmmeetingrep.Query(d => d.aid == Para.Aid).FirstOrDefault();
-                if (EditInfo == null)
-                    throw new CommonException(ReturnCode.NoFoundTargetData);
-                EditInfo.aid = Para.Aid;
-                EditInfo.meeting_type = Para.MeetingType;
-                EditInfo.if_held = Para.IfHeld;
-                EditInfo.prm_organization_privilege_aid = Para.PrmOrganizationPrivilegeAid;
-                EditInfo.meeting_location = Para.MeetingLocation;
-                EditInfo.account_aid = Para.AccountAid;
-                EditInfo.meeting_start_date = Para.MeetingStartDate;
-                EditInfo.meeting_start_date_time = Para.MeetingStartDateTime;
-                EditInfo.meeting_end_date = Para.MeetingEndDate;
-                EditInfo.meeting_end_date_time = Para.MeetingEndDateTime;
-                EditInfo.meeting_desc = Para.MeetingDesc;
-                EditInfo.meeting_members = Para.MeetingMembers;
-                EditInfo.acts29_church_aid = Para.Acts29ChurchAid;
-                EditInfo.last_mod_time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                EditInfo.last_mod_user_aid = MemId;
-                _prmmeetingrep.Save();
+            var EditInfo = _prmmeetingrep.Query(d => d.aid == Para.Aid).FirstOrDefault();
+            if (EditInfo == null)
+                throw new CommonException(ReturnCode.NoFoundTargetData);
+            EditInfo.aid = Para.Aid;
+            EditInfo.meeting_type = Para.MeetingType;
+            EditInfo.if_held = Para.IfHeld;
+            EditInfo.prm_organization_privilege_aid = Para.PrmOrganizationPrivilegeAid;
+            EditInfo.meeting_location = Para.MeetingLocation;
+            EditInfo.account_aid = Para.AccountAid;
+            EditInfo.meeting_start_date = Para.MeetingStartDate;
+            EditInfo.meeting_start_date_time = Para.MeetingStartDateTime;
+            EditInfo.meeting_end_date = Para.MeetingEndDate;
+            EditInfo.meeting_end_date_time = Para.MeetingEndDateTime;
+            EditInfo.meeting_desc = Para.MeetingDesc;
+            EditInfo.meeting_members = Para.MeetingMembers;
+            EditInfo.acts29_church_aid = Para.Acts29ChurchAid;
+            EditInfo.last_mod_time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            EditInfo.last_mod_user_aid = MemId;
+            _prmmeetingrep.Save();
         }
         /// <summary>
         /// 刪除一筆面談紀錄
@@ -89,37 +87,40 @@ namespace Acts29Torch.DAL.PrmReportDAL
         /// <param name="MemId"></param>
         public void Delete(DeletePrmReportIn Para, int MemId)
         {
-                var DelInfo = _prmmeetingrep.Query(d => d.aid == Para.Aid).FirstOrDefault();
-                if (DelInfo == null)
-                    throw new CommonException(ReturnCode.NoFoundTargetData);
-                DelInfo.disable = 1;
-                DelInfo.last_mod_time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                DelInfo.last_mod_user_aid = MemId;
-                _prmmeetingrep.Save();
+            var DelInfo = _prmmeetingrep.Query(d => d.aid == Para.Aid).FirstOrDefault();
+            if (DelInfo == null)
+                throw new CommonException(ReturnCode.NoFoundTargetData);
+            DelInfo.disable = 1;
+            DelInfo.last_mod_time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            DelInfo.last_mod_user_aid = MemId;
+            _prmmeetingrep.Save();
         }
-        public List<PrmMeetingSimpleOut> GetList(QueryPrmMettingIn Para)
+        public PageListInfo<PrmMeetingSimpleOut> GetList(QueryPrmMettingIn Para, int Page, int PageCount)
         {
-                using (var db = new Acts29TorchEntities())
-                {
-                    var data = (from t1 in db.prm_meeting_report
-                                join t2 in db.account on t1.account_aid equals t2.aid
-                                join t3 in db.prm_organization_privilege on t1.prm_organization_privilege_aid equals t3.aid
-                                select new MulitTable
-                                {
-                                    t1 = t1,
-                                    t2 = t2,
-                                    t3 = t3
-                                }).AsExpandable()
-                               .Where(PrmMeeingCondition(Para))
-                               .GroupBy(d => new { d.t1.aid, d.t2.user_name, d.t3.organization_name })
-                               .Select(d => new PrmMeetingSimpleOut()
-                               {
-                                   Aid = d.Key.aid,
-                                   AccountMem = d.Key.user_name,
-                                   OrganizationName = d.Key.organization_name
-                               }).ToList();
-                    return data;
-                }           
+            using (var db = new Acts29TorchEntities())
+            {
+                var result = new PageListInfo<PrmMeetingSimpleOut>();
+                var data = (from t1 in db.prm_meeting_report
+                            join t2 in db.account on t1.account_aid equals t2.aid
+                            join t3 in db.prm_organization_privilege on t1.prm_organization_privilege_aid equals t3.aid
+                            select new MulitTable
+                            {
+                                t1 = t1,
+                                t2 = t2,
+                                t3 = t3
+                            }).AsExpandable()
+                           .Where(PrmMeeingCondition(Para))
+                           .GroupBy(d => new { d.t1.aid, d.t2.user_name, d.t3.organization_name })
+                           .Select(d => new PrmMeetingSimpleOut()
+                           {
+                               Aid = d.Key.aid,
+                               AccountMem = d.Key.user_name,
+                               OrganizationName = d.Key.organization_name
+                           });
+                result.Data = data.OrderBy(d => d.Aid).Skip(PageCount * (Page - 1)).Take(PageCount).ToList();
+                result.Count = data.Count();
+                return result;
+            }
         }
         private class MulitTable
         {
@@ -144,20 +145,21 @@ namespace Acts29Torch.DAL.PrmReportDAL
         public QueryPrmReportOut GetSingle(QueryPrmMettingDetailIn Para)
         {
             return _prmmeetingrep.Query(d => d.aid == Para.Aid)
-                .Select(d=>new QueryPrmReportOut {
+                .Select(d => new QueryPrmReportOut
+                {
                     Aid = d.aid,
                     MeetingType = d.meeting_type,
                     IfHeld = d.if_held,
                     PrmOrganizationPrivilegeAid = d.prm_organization_privilege_aid,
                     MeetingLocation = d.meeting_location,
-                    AccountAid=d.account_aid,
+                    AccountAid = d.account_aid,
                     MeetingStartDate = d.meeting_start_date,
                     MeetingStartDateTime = d.meeting_start_date_time,
                     MeetingEndDate = d.meeting_end_date,
-                    MeetingEndDateTime =d.meeting_end_date_time,
+                    MeetingEndDateTime = d.meeting_end_date_time,
                     MeetingDesc = d.meeting_desc,
                     MeetingMembers = d.meeting_members,
-                    Acts29ChurchAid = d.acts29_church_aid                
+                    Acts29ChurchAid = d.acts29_church_aid
                 })
                 .FirstOrDefault();
         }

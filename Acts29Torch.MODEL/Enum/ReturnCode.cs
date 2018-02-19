@@ -21,4 +21,19 @@ namespace Acts29Torch.MODEL.Enum
         DataNotFound = 503,
         Exception = 9999
     }
+
+    public class CommonException : Exception
+    {
+        public ReturnCode ReturnCode { get; set; }
+        public CommonException()
+        { }
+        public CommonException(ReturnCode _code) : base(_code.ToString())
+        {
+            ReturnCode = _code;
+        }
+        public CommonException(ReturnCode _code, string msg) : base(msg)
+        {
+            ReturnCode = _code;
+        }
+    }
 }

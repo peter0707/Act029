@@ -13,6 +13,7 @@ namespace Acts29Torch.DAL.Repository
         T GetById(int id);
         IQueryable<T> GetAll();
         IQueryable<T> Query(Expression<Func<T, bool>> filter);
+        bool Any(Expression<Func<T, bool>> filter);
         void Create(T _entity);
         void Create(List<T> _entity);
         void Delete(T _entity);
