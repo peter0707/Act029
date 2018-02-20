@@ -13,14 +13,14 @@ using System.Threading.Tasks;
 
 namespace Acts29Torch.DAL.PrmReportDAL
 {
-    public class PrmMettingDAL
+    public class PrmReportDAL
     {
         private readonly IUnitOfWork unitOfWork;
-        private readonly IRepository<prm_meeting_report> _prmmeetingrep;
-        public PrmMettingDAL(IUnitOfWork _unitOfWork)
+        private readonly IRepository<prm_meeting_report> _prmreportrep;
+        public PrmReportDAL(IUnitOfWork _unitOfWork)
         {
             unitOfWork = _unitOfWork;
-            _prmmeetingrep = new Repository<prm_meeting_report>(unitOfWork);
+            _prmreportrep = new Repository<prm_meeting_report>(unitOfWork);
         }
         /// <summary>
         /// 新增一筆面談紀錄
@@ -29,7 +29,7 @@ namespace Acts29Torch.DAL.PrmReportDAL
         /// <param name="MemId"></param>
         public void Create(CreatePrmReportIn Para, int MemId)
         {
-            var CreateInfo = _prmmeetingrep.GetAll().OrderByDescending(d => d.aid).Take(1).FirstOrDefault();
+            var CreateInfo = _prmreportrep.GetAll().OrderByDescending(d => d.aid).Take(1).FirstOrDefault();
             var data = new prm_meeting_report()
             {
                 aid = CreateInfo == null ? 1 : CreateInfo.aid + 1,
@@ -50,8 +50,8 @@ namespace Acts29Torch.DAL.PrmReportDAL
                 last_mod_time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                 last_mod_user_aid = MemId
             };
-            _prmmeetingrep.Create(data);
-            _prmmeetingrep.Save();
+            _prmreportrep.Create(data);
+            _prmreportrep.Save();
         }
         /// <summary>
         /// 修改一筆面談紀錄
@@ -60,7 +60,7 @@ namespace Acts29Torch.DAL.PrmReportDAL
         /// <param name="MemId"></param>
         public void Edit(EditPrmReportIn Para, int MemId)
         {
-            var EditInfo = _prmmeetingrep.Query(d => d.aid == Para.Aid).FirstOrDefault();
+            var EditInfo = _prmreportrep.Query(d => d.aid == Para.Aid).FirstOrDefault();
             if (EditInfo == null)
                 throw new CommonException(ReturnCode.NoFoundTargetData);
             EditInfo.aid = Para.Aid;
@@ -78,7 +78,7 @@ namespace Acts29Torch.DAL.PrmReportDAL
             EditInfo.acts29_church_aid = Para.Acts29ChurchAid;
             EditInfo.last_mod_time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             EditInfo.last_mod_user_aid = MemId;
-            _prmmeetingrep.Save();
+            _prmreportrep.Save();
         }
         /// <summary>
         /// 刪除一筆面談紀錄
@@ -87,19 +87,19 @@ namespace Acts29Torch.DAL.PrmReportDAL
         /// <param name="MemId"></param>
         public void Delete(DeletePrmReportIn Para, int MemId)
         {
-            var DelInfo = _prmmeetingrep.Query(d => d.aid == Para.Aid).FirstOrDefault();
+            var DelInfo = _prmreportrep.Query(d => d.aid == Para.Aid).FirstOrDefault();
             if (DelInfo == null)
                 throw new CommonException(ReturnCode.NoFoundTargetData);
             DelInfo.disable = 1;
             DelInfo.last_mod_time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             DelInfo.last_mod_user_aid = MemId;
-            _prmmeetingrep.Save();
+            _prmreportrep.Save();
         }
-        public PageListInfo<PrmMeetingSimpleOut> GetList(QueryPrmMettingIn Para, int Page, int PageCount)
+        public PageListInfo<PrmReportSimpleOut> GetList(QueryPrmReportIn Para, int Page, int PageCount)
         {
             using (var db = new Acts29TorchEntities())
             {
-                var result = new PageListInfo<PrmMeetingSimpleOut>();
+                var result = new PageListInfo<PrmReportSimpleOut>();
                 var data = (from t1 in db.prm_meeting_report
                             join t2 in db.account on t1.account_aid equals t2.aid
                             join t3 in db.prm_organization_privilege on t1.prm_organization_privilege_aid equals t3.aid
@@ -111,7 +111,7 @@ namespace Acts29Torch.DAL.PrmReportDAL
                             }).AsExpandable()
                            .Where(PrmMeeingCondition(Para))
                            .GroupBy(d => new { d.t1.aid, d.t2.user_name, d.t3.organization_name })
-                           .Select(d => new PrmMeetingSimpleOut()
+                           .Select(d => new PrmReportSimpleOut()
                            {
                                Aid = d.Key.aid,
                                AccountMem = d.Key.user_name,
@@ -128,7 +128,7 @@ namespace Acts29Torch.DAL.PrmReportDAL
             public account t2 { get; set; }
             public prm_organization_privilege t3 { get; set; }
         }
-        private Expression<Func<MulitTable, bool>> PrmMeeingCondition(QueryPrmMettingIn Para)
+        private Expression<Func<MulitTable, bool>> PrmMeeingCondition(QueryPrmReportIn Para)
         {
             var Search = PredicateBuilder.New<MulitTable>();
             Search.And(d => true);
@@ -142,9 +142,9 @@ namespace Acts29Torch.DAL.PrmReportDAL
             }
             return Search;
         }
-        public QueryPrmReportOut GetSingle(QueryPrmMettingDetailIn Para)
+        public QueryPrmReportOut GetSingle(QueryPrmReportDetailIn Para)
         {
-            return _prmmeetingrep.Query(d => d.aid == Para.Aid)
+            return _prmreportrep.Query(d => d.aid == Para.Aid)
                 .Select(d => new QueryPrmReportOut
                 {
                     Aid = d.aid,

@@ -1,4 +1,4 @@
-﻿using Acts29Torch.BLL.PrmMeetingBLL;
+﻿using Acts29Torch.BLL.PrmReportBLL;
 using Acts29Torch.MODEL.Common;
 using Acts29Torch.MODEL.Enum;
 using Acts29Torch.MODEL.PrmReport;
@@ -12,12 +12,12 @@ using System.Web.Http.Description;
 
 namespace Acts29Torch.API.Controllers
 {
-    public class PrmMettingController : BaseController
+    public class PrmReportController : BaseController
     {
-        private readonly PrmMeetingBLL _prmmeetingBll;
-        public PrmMettingController()
+        private readonly PrmReportBLL _prmreportBll;
+        public PrmReportController()
         {
-            _prmmeetingBll = new PrmMeetingBLL();
+            _prmreportBll = new PrmReportBLL();
         }
         /// <summary>
         /// 新增一筆面談資料
@@ -32,7 +32,7 @@ namespace Acts29Torch.API.Controllers
             var _rc = ReturnCode.CreateSuccess;
             try
             {
-                _prmmeetingBll.Create(Para.Data, Para.MemId);
+                _prmreportBll.Create(Para.Data, Para.MemId);
             }
             catch (CommonException e)
             {
@@ -54,7 +54,7 @@ namespace Acts29Torch.API.Controllers
             var _rc = ReturnCode.EditSuccess;
             try
             {
-                _prmmeetingBll.Edit(Para.Data, Para.MemId);
+                _prmreportBll.Edit(Para.Data, Para.MemId);
             }
             catch (CommonException e)
             {
@@ -80,7 +80,7 @@ namespace Acts29Torch.API.Controllers
             var _rc = ReturnCode.DeleteSuccess;
             try
             {
-                _prmmeetingBll.Delete(Para.Data, Para.MemId);
+                _prmreportBll.Delete(Para.Data, Para.MemId);
             }
             catch (CommonException e)
             {
@@ -98,16 +98,16 @@ namespace Acts29Torch.API.Controllers
         /// </summary>
         /// <param name="Para"></param>
         /// <returns></returns>
-        [ResponseType(typeof(ResultInfo<PageListInfo<PrmMeetingSimpleOut>>))]
+        [ResponseType(typeof(ResultInfo<PageListInfo<PrmReportSimpleOut>>))]
         [ApiExplorerSettings(IgnoreApi = false)]
         [HttpPost]
-        public IHttpActionResult GetList(SendInfo<QueryPrmMettingIn> Para)
+        public IHttpActionResult GetList(SendInfo<QueryPrmReportIn> Para)
         {
-            var result = new PageListInfo<PrmMeetingSimpleOut>();
+            var result = new PageListInfo<PrmReportSimpleOut>();
             var _rc = ReturnCode.GetDataSuccess;
             try
             {
-                result = _prmmeetingBll.GetList(Para.Data, Para.Page, Para.PageCount);
+                result = _prmreportBll.GetList(Para.Data, Para.Page, Para.PageCount);
                 if (result == null || result.Data == null || result.Data.Count() == 0)
                     _rc = ReturnCode.DataNotFound;
             }
@@ -127,13 +127,13 @@ namespace Acts29Torch.API.Controllers
         [ResponseType(typeof(ResultInfo<QueryPrmReportOut>))]
         [ApiExplorerSettings(IgnoreApi = false)]
         [HttpPost]
-        public IHttpActionResult GetSingle(SendInfo<QueryPrmMettingDetailIn> Para)
+        public IHttpActionResult GetSingle(SendInfo<QueryPrmReportDetailIn> Para)
         {
             var _rc = ReturnCode.GetDataSuccess;
             var data = new QueryPrmReportOut();
             try
             {
-                data = _prmmeetingBll.GetSingle(Para.Data);
+                data = _prmreportBll.GetSingle(Para.Data);
                 if(data == null)
                     _rc = ReturnCode.DataNotFound;
             }

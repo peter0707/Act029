@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PrmMeetingDAL\PrmMettingDAL.cs" />
+    <Compile Include="PrmReportDAL\PrmReportDAL.cs" />
     <Compile Include="Repository\EFUnitOfWork.cs" />
     <Compile Include="Repository\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

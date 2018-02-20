@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Acts29Torch.MODEL.PrmReport
 {
-    public class QueryPrmMettingIn
+    public class QueryPrmReportIn
     {
         public string OrganizationName { get; set; }
         public string MeetingMemName { get; set; }
     }
 
-    public class QueryPrmMettingDetailIn
+    public class QueryPrmReportDetailIn
     {
         public long Aid { get; set; }
     }

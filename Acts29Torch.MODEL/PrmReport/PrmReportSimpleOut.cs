@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Acts29Torch.MODEL.PrmReport
 {
-    public class PrmMeetingSimpleOut
+    public class PrmReportSimpleOut
     {
         /// <summary>
         /// 面談編號

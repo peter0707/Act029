@@ -188,7 +188,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PrmMettingController.cs" />
+    <Compile Include="Controllers\PrmReportController.cs" />
     <Compile Include="Filter\ApiResultAttribute.cs" />
     <Compile Include="Filter\ElmahErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">

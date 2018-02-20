@@ -45,8 +45,8 @@
     <Compile Include="Common\UserInfo.cs" />
     <Compile Include="Enum\ReturnCode.cs" />
     <Compile Include="PrmReport\PrmReportPara.cs" />
-    <Compile Include="PrmReport\PrmMeetingSimpleOut.cs" />
-    <Compile Include="PrmReport\QueryPrmMettingIn.cs" />
+    <Compile Include="PrmReport\PrmReportSimpleOut.cs" />
+    <Compile Include="PrmReport\QueryPrmReportIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
