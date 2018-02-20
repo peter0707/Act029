@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Acts29Torch.WEB.App_Start;
+using Acts29Torch.WEB.Filter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +15,8 @@ namespace Acts29Torch.WEB
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            GlobalFilters.Filters.Add(new AuthorizePlusAttribute());
         }
     }
 }
