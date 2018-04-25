@@ -46,6 +46,7 @@
     <Compile Include="Enum\ReturnCode.cs" />
     <Compile Include="PrmReport\PrmReportPara.cs" />
     <Compile Include="PrmReport\PrmReportSimpleOut.cs" />
+    <Compile Include="PrmReport\QueryMemSelect.cs" />
     <Compile Include="PrmReport\QueryPrmReportIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

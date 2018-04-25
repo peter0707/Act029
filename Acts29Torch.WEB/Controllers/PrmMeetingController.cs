@@ -19,8 +19,15 @@ namespace Acts29Torch.WEB.Controllers
         public ActionResult Create(CreatePrmReportIn Data)
         {
             var SData=Send.SetData(Data);
-            var result = ApiPost<ResultInfo,SendInfo<CreatePrmReportIn>>(SData, "PrmMeeting/Create");
+            var result = ApiPost<ResultInfo,SendInfo<CreatePrmReportIn>>(SData, "PrmReport/Create");
             return Json(result,JsonRequestBehavior.DenyGet);
+        }
+
+        public ActionResult CreateView()
+        {
+            var result = ApiGet<ResultInfo<List<QueryMemSelect>>>("PrmReport/GetMemSelectList");
+            ViewBag.MemList = result.Result.Select(item => new SelectListItem { Value = item.MemId.ToString(), Text = item.MemName });
+            return View();
         }
     }
 }

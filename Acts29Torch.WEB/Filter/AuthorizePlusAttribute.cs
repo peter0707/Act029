@@ -20,7 +20,8 @@ namespace Acts29Torch.WEB.Filter
                 httpContext.Session["MemId"] = ID;
                 return true;
             }
-            return false;
+            //return false;//測試要調整為FALSE
+            return true;
         }
     }
 }

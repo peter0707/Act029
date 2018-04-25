@@ -68,5 +68,14 @@ namespace Acts29Torch.BLL.PrmReportBLL
         {
             return _prmreportDAL.GetSingle(Para);
         }
+        /// <summary>
+        /// 取得會眾清單
+        /// </summary>
+        /// <param name="Para"></param>
+        /// <param name="MemId"></param>
+        public List<QueryMemSelect> GetMemSelectList()
+        {
+            return _prmreportDAL.GetMemSelectList();
+        }
     }
 }

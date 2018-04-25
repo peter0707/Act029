@@ -3,38 +3,41 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href=" https://necolas.github.io/normalize.css/3.0.2/normalize.css">
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <script src="~/Scripts/Base/Base.js"></script>
+    <link href="~/Content/Base/Base.css" rel="stylesheet" />
+    @RenderSection("style", false)
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container wrap">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+            <div class="header">
             </div>
         </div>
-    </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <div class="container body-content confirm">
+            @RenderBody()
+            <hr />
+        </div>
+        <div class="container">
+            <div class="footer">
+                <img src="~/Images/logo.svg" />
+                <address>
+                    <strong>火把行道會</strong> 台北市中正區許昌街42號9樓
+                    <br>
+                    <abbr title="電話">Tel:</abbr> (02)2312-1210
+                    <abbr title="傳真">Fax:</abbr> (02)2312-1203
+                </address>
+            </div>
+            <div class="footer2 text-center"> <strong>活動報名系統 Copyright © TorchChurch</strong></div>
+        </div>
     </div>
-
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("Script", false)
+    @RenderSection("PageScript", false)
 </body>
 </html>

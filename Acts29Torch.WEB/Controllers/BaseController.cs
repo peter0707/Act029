@@ -37,7 +37,7 @@ namespace Acts29Torch.WEB.Controllers
         /// <typeparam name="TR"></typeparam>
         /// <param name="strUrl"></param>
         /// <returns></returns>
-        public TR ApiGett<TR>(string strUrl)
+        public TR ApiGet<TR>(string strUrl)
         {
             return Task.Run(() => api.Get<TR>(strUrl)).Result;
         }

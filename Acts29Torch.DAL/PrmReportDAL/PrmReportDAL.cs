@@ -17,10 +17,12 @@ namespace Acts29Torch.DAL.PrmReportDAL
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IRepository<prm_meeting_report> _prmreportrep;
+        private readonly IRepository<member> _memrep;
         public PrmReportDAL(IUnitOfWork _unitOfWork)
         {
             unitOfWork = _unitOfWork;
             _prmreportrep = new Repository<prm_meeting_report>(unitOfWork);
+            _memrep = new Repository<member>(unitOfWork);
         }
         /// <summary>
         /// 新增一筆面談紀錄
@@ -162,6 +164,15 @@ namespace Acts29Torch.DAL.PrmReportDAL
                     Acts29ChurchAid = d.acts29_church_aid
                 })
                 .FirstOrDefault();
+        }
+
+        public List<QueryMemSelect> GetMemSelectList()
+        {
+            return _memrep.GetAll().Select(d => new QueryMemSelect
+            {
+                MemId = d.aid,
+                MemName = d.member_name_mandarin
+            }).ToList();
         }
     }
 }

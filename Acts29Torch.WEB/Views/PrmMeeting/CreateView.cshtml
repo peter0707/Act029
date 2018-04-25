@@ -1,0 +1,86 @@
+﻿@model Acts29Torch.MODEL.PrmReport.CreatePrmReportIn
+@{
+    ViewBag.Title = "新增一筆訪談紀錄";
+    IEnumerable<SelectListItem> MemList = ViewBag.MemList;
+}
+
+
+<div class="row">
+    <div class="col-lg-2" id="LeftDiv">
+    </div>
+    <div class="col-lg-8">
+        <div class="row modal-body">
+            <div class="col-lg-2">
+                @Html.Label("牧養成員*", new { @class = "control-label" })
+                @*<label class="control-label">牧養成員*</label>*@
+            </div>
+            <div class="col-lg-4">
+                @Html.DropDownList("txtMem", MemList, "請選擇", new Dictionary<string, object> { { "class", "form-control" }, { "check-type", "required" } })
+            </div>
+            <div class="col-lg-2">
+                @Html.Label("牧養地點*", new { @class = "control-label" })
+            </div>
+            <div class="col-lg-4">
+                <input class="form-control" type="text" id="txtAddress" name="txtAddress" placeholder="紀錄地點..." maxlength="50" />
+            </div>
+        </div>
+        <div class="modal-footer" style="clear:both">
+            <button id="btnSave" type="button" class="btn btn-primary">儲存</button>
+            <button id="btnBack" type="button" class="btn btn-danger">返回</button>
+        </div>
+    </div>
+    <div class="col-lg-2" id="RightDiv">
+
+    </div>
+</div>
+@section Script
+{
+    @*特殊套件放置處*@
+}
+@section PageScript
+{
+    <script>
+        function SaveData()
+        {
+            if ($("#txtMem").val() == "")
+            {
+                alert('請選擇面談成員')
+                return;
+            }
+            if ($("#txtAddress").val() == "") {
+                alert('請輸入地點')
+                return;
+            }
+            var postData = {
+                MeetingMembers: $("#txtMem").val(),
+                MeetingLocation: $("#txtAddress").val()
+            };
+
+            var url = "@Url.Action("Create")";
+            var btn = $("#btnSave");
+            btn.button('loading');
+            $.post(url, postData, function (res, status) {
+                if (res.RC = 101) {
+                    alert("操作成功");
+                    BaseJs.GoTo("@Url.Action("Index")");
+                } else {
+                    alert("操作失敗：" + res.msg);
+                }
+            }).error(function () {
+                alert("處理程序錯誤");
+            }).complete(function () {
+                btn.button('reset');
+            });
+        }
+
+    $(document).ready(function () {
+        $("#btnSave").click(SaveData);
+        $("#btnBack").click(function () {
+            BaseJs.GoTo("@Url.Action("Index")");
+        });
+        $.ajaxSetup({
+            async: false
+        });
+    });
+    </script>
+}

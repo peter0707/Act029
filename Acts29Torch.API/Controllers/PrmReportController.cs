@@ -145,5 +145,32 @@ namespace Acts29Torch.API.Controllers
             }
             return Json(_resultInfo.GetResult(_rc, data));
         }
+        /// <summary>
+        /// 取得會員下拉選單資料
+        /// </summary>
+        /// <param name="Para"></param>
+        /// <returns></returns>
+        [ResponseType(typeof(ResultInfo<List<QueryMemSelect>>))]
+        [ApiExplorerSettings(IgnoreApi = false)]
+        [HttpGet]
+        public IHttpActionResult GetMemSelectList()
+        {
+            var _rc = ReturnCode.GetDataSuccess;
+            var data = new List<QueryMemSelect>();
+            try
+            {
+                data = _prmreportBll.GetMemSelectList();
+                if (data == null)
+                    _rc = ReturnCode.DataNotFound;
+            }
+            catch (CommonException e)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
+                _rc = ReturnCode.GetDataFail;
+                data = null;
+            }
+            return Json(_resultInfo.GetResult(_rc, data));
+        }
+
     }
 }
