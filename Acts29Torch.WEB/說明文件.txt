@@ -1,0 +1,74 @@
+﻿-專案分佈
+--Acts29Torch.EF               Entity Framework 放置地方，資料庫更新則需要手動更新，一人維護其他人同步即可，不建議同時多人更新上傳，相關資訊可查看微軟ORM技術
+--Acts29Torch.MODEL            Class設置地方，統一存放類別，各專案皆會引用
+--Acts29Torch.DAL              撈取SQL資料，採用ORM技術搭配LINQ及LAMBDA，需要學習相關語法，基本概念是將ADO.NET語法轉變為物件導向概念，結合一些設計概念組合而成，學習上手可快速開發
+--Acts29Torch.BLL　　　　　　　商業邏輯層，後台撈取資料盡可能單純除非資料龐大導致回傳數量太多，如果需要進行資料修改或者資料呈現異動，統一由此層面負責，不要都透過DAL處理
+--Acts29Torch.API              只負責接收來自其他伺服器調用及回傳相關資料的處理，盡可能單純
+--Acts29Torch.WEB              此次負責撰寫面談的架構的地方，本身並未採用AREA區域，如果專案過於龐大或多人開發才會考量使用MVC的AREAS區域，後續如有其他項目可以再新增專案即可
+
+****DAL層採用的為LINQ TO Entity Framework 好處是可快速開發，撈取資料後可直接MAPPING 物件直接使用，缺點是複雜搜尋較為麻煩，固有增加套件LinqKit來提供搜尋，****
+         此技術往後認為取代ADO.NET機會頗高，搭配DAPPER也是一些大型專案採用的技術，如果對於該技術研究認為較為麻煩，也可直接替換掉DAL層改為SQL語法撰寫
+
+--技術面需要研究
+--LINQ　　　　　　　　　　　　　　　　　資料處理語法
+--LAMBDA　　　　　　　　　　　　　　　　資料處理語法  <<LINQ 更簡化語法的版本
+--Entity Framework　　　　　　　　　　　資料庫        ORM技術的底層技術
+--ORM  技術                             結合以上三種技術的概念，可以稍微了解
+--Repository                            了解原理即可
+--DI 及 IOC                             了解原理即可
+
+
+--程式面待調整（著重在本身架構設計時，與一般MVC異動處）
+　--Acts29Torch.API 　
+    　　--App_Data    
+	  　　--Elmah.Errors                存放異常紀錄文件XML格式，資料過於龐大可以刪除舊資料，用來記錄錯誤異常或可自行尋找Elmah.MVC調整為儲存資料庫，或者刪除Elmah套件就會停用
+	　　--App_Start
+	 　　 --WebApiConfig.cs             引用了ElmahErrorAttribute及ApiResultAttribute，當伺服器啟動即會同時執行，後續如需自行新增則記得在此增加
+　　　　--Filter
+     　　 --ApiResultAttribute.cs       用來記錄調取API紀錄的地方，看要採用何種記錄方式，來儲存調取API紀錄的使用者為誰或者時間及參數
+	 　　 --ElmahErrorAttribute         針對異常無法處理的錯誤，會自動儲存到Elmah除此之外會回傳錯誤代碼９９９９，可自行調整
+	　　--Views
+	 　　 --Home
+	    　　--Index.cshtml              執行此網站，會來到API所以提供測試及檢驗的網站，點擊左上角API，可以查看到已開發API，如果想讓API後方呈現API的名稱可察看以下網站說明照做即可
+		                           　　 https://blog.miniasp.com/post/2013/11/05/Creating-ASPNET-Web-API-Help-Pages-for-ASPNET-MVC-4.aspx
+	　　--Web.config                    比較需要注意的地方為Elmah讀取的網址，預設為ErrorMessage.axd代表如果要查看錯誤資訊只要輸入
+	                                    http://localhost/ErrorMessage.axd
+										只允許本機端查詢，可自行修改
+
+  --Acts29Torch.EF
+    　　--App.Config                    connectionStrings 為資料庫連線字串 其中　data source=.;initial catalog=acts29Torch;user id=sa;password=TC?258 此段比較重要，
+	                                　　連線資訊
+									　　data source        連線位置 預設* . *為本機端 可填入IP：192.168.1.1
+									　　initial catalog    資料庫名稱
+									　　user id            資料庫連線帳號
+									　　password           資料庫密碼
+									　　假設沒有設置SQL帳號密碼可以採用以下字串替代
+									　　Data Source=.;Initial Catalog=acts29Torch;Integrated Security=True
+									　　如果想查詢各資料庫連線字串，以下網站可以查詢
+									　　https://www.connectionstrings.com/
+
+  --Acts29Torch.WEB
+        --App_Data    
+	  　　--Elmah.Errors                存放異常紀錄文件XML格式，資料過於龐大可以刪除舊資料，用來記錄錯誤異常或可自行尋找Elmah.MVC調整為儲存資料庫，或者刪除Elmah套件就會停用
+	    --Content
+		  --Base
+		    --Base.css                  本身習慣通用丟此資料夾，如果有自己使用的CSS則可以無視
+		--Controllers
+		  --BaseController              一些通用調閱紀錄儲存及使用方法，進入Action之前帳號處理，需要依照使用方式調整
+		--Filter
+		  --AuthorizePlusAttribute.cs   驗證角色是否登入，條件中網站是否需要判斷會員，做法為統一都要判斷，故整個網站只要沒登入會跳出，但先將驗證調整為true統一驗證成功後續要改為false
+		  --CommonExceptionFilter.cs    當出現Exception處理方式暫時定為儲存到Elmah，可以調整為儲存到資料庫或者其他方法
+		--Helper
+		  --ApiHelper.cs                呼叫API統一調用方法POST GET 一般來說已經夠用，需要新增可以自行稱加
+		--Scripts
+		  --Base
+		    --Base.js                   JS前端統一語法，可以自行新增呼叫JS，統一一人管理，多人可以直接使用，要看每個專案定義
+	　　--Views                         網站存放地方
+	      --Shared                      基本框架
+		    --_Layout.cshtml            每個網站基本邊邊框架，統一設置於此，其他網站則只需要修改內文，外框通用Layout.cshtml顯示
+			--Error.cshtml              錯誤提示網站，可以自行修改
+		--Web.config                    <add key="ApiUrl" value="http://localhost/Api/" /> 修改API存放位置
+		                                比較需要注意的地方為Elmah讀取的網址，預設為Prmelmah.axd代表如果要查看錯誤資訊只要輸入
+	                                    http://localhost/Prmelmah.axd
+										只允許本機端查詢，可自行修改(與API不同，相同也是可以，基本就是自己設定，本機才能查看)
+		                                
